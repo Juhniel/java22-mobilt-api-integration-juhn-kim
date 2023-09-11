@@ -12,6 +12,7 @@ import com.example.java22_mobilt_api_integration_juhn_kim.api.ApiService
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 
+
 class RandomBoredActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
