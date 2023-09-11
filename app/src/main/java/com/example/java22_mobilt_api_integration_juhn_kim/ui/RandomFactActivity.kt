@@ -55,6 +55,7 @@ class RandomFactActivity : AppCompatActivity() {
                     .show()
             }
 
+        // Navigate back to the main activity and clear the back stack.
         backToHomeBtn.setOnClickListener {
             val goToMainActivity = Intent(this, MainActivity::class.java)
             goToMainActivity.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

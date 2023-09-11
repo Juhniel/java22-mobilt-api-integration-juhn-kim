@@ -61,6 +61,7 @@ class RandomBoredActivity : AppCompatActivity() {
                     .show()
             }
 
+        // Navigate back to the main activity and clear the back stack.
         backToHomeBtn.setOnClickListener {
             val goToMainActivity = Intent(this, MainActivity::class.java)
             goToMainActivity.flags =
