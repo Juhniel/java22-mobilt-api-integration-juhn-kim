@@ -23,9 +23,10 @@ class RandomBoredActivity : AppCompatActivity() {
         val tvType = findViewById<TextView>(R.id.tv_type)
         val backToHomeBtn = findViewById<Button>(R.id.btn_home)
 
+        // Create an instance of the ApiService to fetch data from an external API.
         val apiService = ApiService(this)
 
-
+        // Fetch the random activity data from bored API and we parse the JSON response with Gson library
         apiService.fetchBoredAPI(
             onResponse = { response ->
                 val gson = Gson()
@@ -44,7 +45,7 @@ class RandomBoredActivity : AppCompatActivity() {
 
         val tvBoredCount = findViewById<TextView>(R.id.tv_bored_count)
 
-        // Fetch the count of people who were not bored
+        // Fetch the count of people who were bored
         val boredRef = db.collection("counters").document("boredCount")
         boredRef.get()
             .addOnSuccessListener { document ->

@@ -14,9 +14,16 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
+        // Get instance of Firestore
         val db = FirestoreUtil.getInstance();
+
         val btnYes = findViewById<Button>(R.id.btn_yes)
         val btnNo = findViewById<Button>(R.id.btn_no)
+
+        /*
+        * Whenever a button is clicked we add the counter to keep track of how many are bored / not bored
+        * We then store it in Firestore for later use in our RandomBoredActivity and RandomFactActivity
+        * */
 
         btnYes.setOnClickListener {
             // Increment the "boredCount" field value by 1
