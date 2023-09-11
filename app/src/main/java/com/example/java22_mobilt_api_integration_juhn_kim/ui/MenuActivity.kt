@@ -1,27 +1,49 @@
 package com.example.java22_mobilt_api_integration_juhn_kim.ui
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.java22_mobilt_api_integration_juhn_kim.R
+import com.google.firebase.firestore.FieldValue
 
 class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
+        val db = FirestoreUtil.getInstance();
         val btnYes = findViewById<Button>(R.id.btn_yes)
         val btnNo = findViewById<Button>(R.id.btn_no)
 
         btnYes.setOnClickListener {
-            val intent = Intent(this, RandomBoredActivity::class.java)
-            startActivity(intent)
+            // Increment the "boredCount" field value by 1
+            val boredRef = db.collection("counters").document("boredCount")
+            boredRef.update("count", FieldValue.increment(1))
+                .addOnSuccessListener {
+                    Log.d(TAG, "Counter successfully incremented!")
+                    val intent = Intent(this, RandomBoredActivity::class.java)
+                    startActivity(intent)
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error updating counter", e)
+                }
         }
 
         btnNo.setOnClickListener {
-            val intent = Intent(this, RandomBoredActivity::class.java)
-            startActivity(intent)
+            // Increment the "notBoredCount" field value by 1
+            val notBoredRef = db.collection("counters").document("notBoredCount")
+            notBoredRef.update("count", FieldValue.increment(1))
+                .addOnSuccessListener {
+                    Log.d(TAG, "Not-bored counter successfully incremented!")
+                    val intent = Intent(this, RandomFactActivity::class.java)
+                    startActivity(intent)
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error updating not-bored counter", e)
+                }
         }
     }
 }

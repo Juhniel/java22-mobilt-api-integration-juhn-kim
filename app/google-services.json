@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "740622897415",
+    "project_id": "api-integration-67d22",
+    "storage_bucket": "api-integration-67d22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740622897415:android:b6a9e165d7fe395e8235a2",
+        "android_client_info": {
+          "package_name": "com.example.java22_mobilt_api_integration_juhn_kim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1W1JfZMo5kIv2WDu2cQH0STkY05Rc77c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
