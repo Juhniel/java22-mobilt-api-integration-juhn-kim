@@ -9,8 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.java22_mobilt_api_integration_juhn_kim.R
 import com.example.java22_mobilt_api_integration_juhn_kim.api.ApiService
-import com.google.gson.Gson
-import com.google.gson.JsonObject
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.ObjectMapper
 
 
 class RandomFactActivity : AppCompatActivity() {
@@ -28,9 +28,10 @@ class RandomFactActivity : AppCompatActivity() {
 
         apiService.fetchUselessFact(
             onResponse = { response ->
-                val gson = Gson()
-                val jsonObject = gson.fromJson(response, JsonObject::class.java)
-                val text = jsonObject.get("text").asString
+                val objectMapper = ObjectMapper()
+                val jsonNode: JsonNode = objectMapper.readTree(response)
+                val text = jsonNode.get("text").asText()
+
                 tvFact.text = "Random fact: $text"
             },
             onError = { error ->

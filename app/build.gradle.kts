@@ -45,9 +45,13 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
-    implementation("com.google.code.gson:gson:2.9.0")
-
+    implementation("com.fasterxml.jackson.core:jackson-core:2.15.2")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.15.2")
+    implementation(files("libs\\jackson-databind-2.15.2.jar"))
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
+
+
+

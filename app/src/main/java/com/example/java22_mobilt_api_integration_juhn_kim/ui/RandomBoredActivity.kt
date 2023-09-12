@@ -9,8 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.java22_mobilt_api_integration_juhn_kim.R
 import com.example.java22_mobilt_api_integration_juhn_kim.api.ApiService
-import com.google.gson.Gson
-import com.google.gson.JsonObject
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.ObjectMapper
 
 
 class RandomBoredActivity : AppCompatActivity() {
@@ -30,14 +30,14 @@ class RandomBoredActivity : AppCompatActivity() {
         // Fetch the random activity data from bored API and we parse the JSON response with Gson library
         apiService.fetchBoredAPI(
             onResponse = { response ->
-                val gson = Gson()
-                val jsonObject = gson.fromJson(response, JsonObject::class.java)
-                val activity = jsonObject.get("activity").asString
-                val type = jsonObject.get("type").asString
+                    val objectMapper = ObjectMapper()
+                    val jsonNode: JsonNode = objectMapper.readTree(response)
+                    val activity = jsonNode.get("activity").asText()
+                    val type = jsonNode.get("type").asText()
 
-                tvActivity.text = "Activity suggestion: $activity"
-                tvType.text = "Type of activity: $type"
-            },
+                    tvActivity.text = "Activity suggestion: $activity"
+                    tvType.text = "Type of activity: $type"
+                },
             onError = { error ->
                 Toast.makeText(this, "Failed to fetch data: ${error.message}", Toast.LENGTH_LONG)
                     .show()
